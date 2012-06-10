@@ -13,7 +13,7 @@ index('POST', []) ->
 			{ok, SavedCodeRecord} ->
 				Split = lists:last(common_lib:split(SavedCodeRecord:id(), "-")),
 				CodeHash = base62_lib:encode(list_to_integer(Split)),
-				{redirect, [{action, CodeHash}]};
+				{redirect, ["/cv/" ++ CodeHash]};
 			{error, ErrorList} ->
 				{ok, [{errors, ErrorList}, {new_msg, NewCodeRecord}]}
 			end.
