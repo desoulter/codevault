@@ -1,0 +1,13 @@
+{% extends "layout/application.html" %}
+
+{% block title %}Code Vault{% endblock %}
+{% block content %}
+
+<h1>Welcome to Code Vault</h1>
+<p>Yet another code storage.</p>
+
+{% if code_record %}
+	<pre><code>{{ code_record.code_text|escape }}</code></pre>
+{% endif %}
+
+{% endblock %}

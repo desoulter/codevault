@@ -1,0 +1,34 @@
+{% extends "layout/application.html" %}
+
+{% block title %}Code Vault{% endblock %}
+{% block content %}
+
+<h1>Welcome to Code Vault</h1>
+<p>Yet another code storage.</p>
+<form class="well" action="/" method="post">
+  <fieldset>
+    <legend>Legend text</legend>
+    <div class="control-group">
+      <div class="controls">
+		{% if errors %}
+		<ul class="unstyled">
+			{% for error in errors %}
+				<li style="color:red;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<textarea class="input-xlarge" id="textarea" rows="3" name="code_data" ></textarea>
+		<p class="help-block">Paste youre code here.</p>
+		<input class="btn btn-primary" type="submit" value="Store it!" />
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+{% if code_records %}
+{% for code_record in code_records %}
+	<pre><code>{{ code_record.code_text|escape }}</code></pre>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
