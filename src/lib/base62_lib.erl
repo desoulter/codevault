@@ -30,4 +30,5 @@ decode(S) -> decode(S, 0).
 decode([C|Cs], Acc)  when C >= $0, C =< $9 -> decode(Cs, 62 * Acc + (C - $0));
 decode([C|Cs], Acc)  when C >= $A, C =< $Z -> decode(Cs, 62 * Acc + (C - $A + 10));
 decode([C|Cs], Acc)  when C >= $a, C =< $z -> decode(Cs, 62 * Acc + (C - $a + 36));
+decode([C|Cs], Acc) -> decode(Cs, 62 * Acc + (C - $a + 36));
 decode([], Acc) -> Acc.
