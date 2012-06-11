@@ -11,4 +11,9 @@ parse('GET', []) ->
 	Split = lists:last(common_lib:split(Data, "/")),
 	Decoded = ("coderecord-" ++ integer_to_list(base62_lib:decode(Split))),
 	Current = boss_db:find(Decoded),
-	{ok, [{code_record, Current}, {share_url, ShareUrl}]}.
+	case Current == undefined of
+		false ->
+			{ok, [{code_record, Current}, {share_url, ShareUrl}]};
+		true ->
+			{redirect, "/"}
+		end.
