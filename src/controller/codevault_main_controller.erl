@@ -3,8 +3,7 @@
 -default_action (index).
 
 index('GET', []) ->
-	CodeRecords = boss_db:find(coderecord, []),
-	{ok, [{code_records, CodeRecords}]};
+	ok;
 index('POST', []) ->
 		CodeText = Req:post_param("code_data"),
 		%CodeHash = mochihex:to_hex(erlang:md5(CodeText)),

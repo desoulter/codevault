@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Code Vault{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="code storage">
+	<meta name="keywords" content="code, storage, vault, snippet, syntax highlight">
+    <meta name="author" content="desoulter">
 
     <!-- Le styles -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
           <a class="brand" href="/">Code Vault</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -59,7 +59,21 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/bootstrap.min.js"></script>
 	<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery.zclip.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+		$(document).ready(function(){
+			$('button#share_button').zclip({
+			        path:'/static/js/ZeroClipboard.swf',
+			        copy:$('a#share_url').attr("href")
+			    });
+			$('button#share_code_button').zclip({
+				        path:'/static/js/ZeroClipboard.swf',
+				        copy:$('code#code_snippet').text()
+				    });
+		});
+	</script>
 
   </body>
 </html>
