@@ -2,3 +2,5 @@ log/
 .DS_Store
 *.tmproj
 ebin/
+erl_crash.dump
+
