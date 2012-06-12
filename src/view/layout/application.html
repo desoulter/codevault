@@ -53,14 +53,33 @@
           <a class="brand" href="/">Code Vault</a>
           <div class="nav-collapse">
             <ul class="nav">
+			  {% block topmenu %}
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a data-toggle="modal" href="#myModal">About</a></li>
+			  {% endblock %}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+
+	<div class="modal hide fade" id="myModal">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>About</h3>
+	  </div>
+	  <div class="modal-body">
+	    <h4>What is it?</h4>
+		<p>Here is a "Code Vault", the storage of code snippets with a syntax highlighting and sharing availability.</p>
+		<h4>What's inside?</h4>
+		<p>This is result of my experiments with Erlang and <a target="_blank" href="http://www.chicagoboss.org">ChicagoBoss</a> framework.</p>
+		<h4>What's next?</h4>
+		<p>Follow me on twitter: <a href="http://twitter.com/desoulter" target="_blank">@desoulter</a> :-)</p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="#" class="btn btn-primary" data-dismiss="modal">Okay</a>
+	  </div>
+	</div>
 
     <div class="container">
 		{% block content %}
@@ -70,9 +89,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+	<script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 	<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
-	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/jquery.zclip.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 	<script>
