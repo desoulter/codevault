@@ -5,7 +5,7 @@
 index('GET', []) ->
 	ok;
 index('POST', []) ->
-		CodeText = Req:post_param("code_data"),
+		CodeText = string:strip(Req:post_param("code_data")),
 		%CodeHash = mochihex:to_hex(erlang:md5(CodeText)),
 		NewCodeRecord = coderecord:new(id, CodeText, now()),
 		case NewCodeRecord:save() of
