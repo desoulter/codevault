@@ -17,6 +17,8 @@
 	<p>Codevault link: <a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
 	<p><button id="share_button" class="btn btn-mini btn-primary"><i class="icon-globe icon-white"></i> Copy link!</button>&nbsp;&nbsp;<button id="share_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy snippet!</button></p>
 	<pre><code id="code_snippet">{{ code_record.code_text|escape }}</code></pre>
+	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://{{ share_url }}" data-counturl="http://{{ current_url }}" data-text="Check this snippet on the #CodeVault" data-lang="en">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
 </fieldset>
 {% endif %}
 
