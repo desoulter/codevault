@@ -14,7 +14,7 @@
 
 {% if code_record %}
 <fieldset class="well">
-	<p><a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
+	<p>Codevault link: <a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
 	<p><button id="share_button" class="btn btn-mini btn-primary"><i class="icon-globe icon-white"></i> Copy link!</button>&nbsp;&nbsp;<button id="share_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy snippet!</button></p>
 	<pre><code id="code_snippet">{{ code_record.code_text|escape }}</code></pre>
 </fieldset>
