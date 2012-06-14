@@ -1,0 +1,14 @@
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+.span10.wdr {
+	width: 98%;
+	resize: vertical;
+}
+
+.copyright {
+	float:left;
+}
+.powered {
+	float:right;
+}
