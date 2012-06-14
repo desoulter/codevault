@@ -23,6 +23,7 @@
 	</div>
 	<div class="tab-pane fade in" id="preview">
 		<pre><code id="code_snippet"></code></pre>
+		<p><select id="lang_list"></select></p>
 	</div>
 </div>		
 		  </fieldset>
@@ -54,11 +55,23 @@
 		if ($(e.target).attr("href")=="#preview") {
 			text = $("#textarea").val();
 			if (text.length > 0) {
-				$("#code_snippet").text(text);
+				$("#code_snippet").text(text);	
 				$('#code_snippet').each(function(i, e) {hljs.highlightBlock(e)});
+				
+				var current = checkLang();
+				
+				$("#lang_list option[value="+current.firstLanguage+"]").attr('selected', 'selected');
 			}
 		} else {
 			$("#code_snippet").removeClass();
+		}
+	});
+	
+	$(document).ready(function(){
+		var languages = hljs.LANGUAGES;
+		
+		for(var index in languages) {
+			$('#lang_list').append('<option value="'+index+'">'+index+'</option>');
 		}
 	});
 
