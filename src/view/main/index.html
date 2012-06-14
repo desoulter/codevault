@@ -5,16 +5,63 @@
 
 <h1>Welcome to Code Vault</h1>
 <p>Yet another code storage.</p>
-<form class="well form-inline" action="/" method="post">
-  <fieldset>
-    <div class="control-group {% if errors %}error{% endif %}">
-      <div class="controls">
-		<textarea class="span10 wdr" id="textarea" rows="14" name="code_data" ></textarea>
-		<p class="help-block">Paste your code here.</p>
-		<button class="btn btn-primary"><i class="icon-hdd icon-white"></i> Store it!</button>
-      </div>
-    </div>
-  </fieldset>
+<ul class="nav nav-tabs" id="myTab">
+  <li><a href="#code" data-toggle="tab">Code</a></li>
+  <li><a href="#preview" data-toggle="tab">Preview</a></li>
+</ul>
+<form class=" form-inline" action="/" method="post">
+		  <fieldset>
+<div class="tab-content">
+	<div class="tab-pane fade in active" id="code">
+		    <div class="control-group {% if errors %}error{% endif %}">
+		      <div class="controls">
+				<textarea class="span10 wdr" id="textarea" rows="14" name="code_data" ></textarea>
+				<p class="help-block">Paste your code here.</p>
+		
+		      </div>
+		    </div>
+	</div>
+	<div class="tab-pane fade in" id="preview">
+		<pre><code id="code_snippet"></code></pre>
+	</div>
+</div>		
+		  </fieldset>
+<button class="btn btn-primary" type="submit"><i class="icon-hdd icon-white"></i> Store it!</button>
 </form>
 
+{% endblock %}
+
+{% block jscript %}
+<script>
+	function checkLang() {
+		data = $("#code_snippet").text();
+		hl = hljs.highlightAuto(data);
+		firstLng = hl.language;
+		secondLng = hl.second_best.language;
+		var lang = new Object();
+		lang.firstLanguage  = firstLng;
+		lang.secondLanguage = secondLng;
+		return lang;
+	}
+	
+	
+	$(function () {
+	    $('#myTab a:first').tab('show');
+	  });
+	
+	$('a[data-toggle="tab"]').on('show', function (e) {
+
+		if ($(e.target).attr("href")=="#preview") {
+			text = $("#textarea").val();
+			if (text.length > 0) {
+				$("#code_snippet").text(text);
+				$('#code_snippet').each(function(i, e) {hljs.highlightBlock(e)});
+			}
+		} else {
+			$("#code_snippet").removeClass();
+		}
+	});
+
+	
+</script>
 {% endblock %}
