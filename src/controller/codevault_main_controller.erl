@@ -6,8 +6,9 @@ index('GET', []) ->
 	ok;
 index('POST', []) ->
 		CodeText = string:strip(Req:post_param("code_data")),
+		CodeLang = Req:post_param("language_list"),
 		%CodeHash = mochihex:to_hex(erlang:md5(CodeText)),
-		NewCodeRecord = coderecord:new(id, CodeText, now()),
+		NewCodeRecord = coderecord:new(id, CodeText, now(), CodeLang),
 		case NewCodeRecord:save() of
 			{ok, SavedCodeRecord} ->
 				Split = lists:last(common_lib:split(SavedCodeRecord:id(), "-")),

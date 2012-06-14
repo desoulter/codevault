@@ -1,4 +1,4 @@
--module (coderecord, [Id, CodeText, CodeTime]).
+-module (coderecord, [Id, CodeText, CodeTime, CodeLanguage]).
 -compile (export_all).
 
 validation_tests() ->
