@@ -23,7 +23,7 @@
 	</div>
 	<div class="tab-pane fade in" id="preview">
 		<pre><code id="code_snippet"></code></pre>
-		<p><select id="lang_list"></select></p>
+		<p><select id="lang_list" name="language_list"></select></p>
 	</div>
 </div>		
 		  </fieldset>
@@ -38,10 +38,10 @@
 		data = $("#code_snippet").text();
 		hl = hljs.highlightAuto(data);
 		firstLng = hl.language;
-		secondLng = hl.second_best.language;
+		//secondLng = hl.second_best.language;
 		var lang = new Object();
 		lang.firstLanguage  = firstLng;
-		lang.secondLanguage = secondLng;
+		//lang.secondLanguage = secondLng;
 		return lang;
 	}
 	
@@ -75,6 +75,7 @@
 	$(document).ready(function(){
 		var languages = hljs.LANGUAGES;
 		
+		$("#lang_list").append('<option value="no-highlight">plain</option>');
 		for(var index in languages) {
 			$('#lang_list').append('<option value="'+index+'">'+index+'</option>');
 		}
