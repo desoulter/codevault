@@ -7,5 +7,9 @@ $(document).ready(function(){
 	$('button#share_code_button').zclip({
 		        path:'/static/js/ZeroClipboard.swf',
 		        copy:$('code#code_snippet').text()
-		    });
+	    });
+	$('button#script_code_button').zclip({
+		        path:'/static/js/ZeroClipboard.swf',
+		        copy:$('#embed_code').text()
+	    });
 });
