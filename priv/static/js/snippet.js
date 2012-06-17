@@ -140,9 +140,6 @@ var injectCode = function() {
 	"pre .keymethods,	pre .attr_selector,	pre .important,	pre .subst,	pre .cdata {	  color: #cb4b16;	}" +
 	"pre .deletion {	  color: #dc322f;	}	pre .tex .formula {	  background: #073642;	}" 
 	);
-
-	var el = document.createElement('div');
-	el.innerHTML = "ololo";
 	
 	var div = getElementsByClass(document, "codevault-snippet");
 	
@@ -151,9 +148,7 @@ var injectCode = function() {
 		var current_div = div[i];
 		var id = current_div.getAttribute('data');
 		
-		console.log(current_div);
-
-		JSONP.get( 'http://localhost:8001/getData', {sn:id}, function(data){			
+		JSONP.get( 'http://vault.somecode.me/getData', {sn:id}, function(data){			
 			highlighter(data);
 		});
 	}
@@ -168,15 +163,11 @@ var injectCode = function() {
 					current_div.innerHTML = "<pre><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
 				else
 					current_div.innerHTML = "<pre><code>"+htmlQuote(data.code_record)+"</code></pre>";
-				hljs.highlightBlock(current_div, null, true);
-				
+				hljs.highlightBlock(current_div, null, true);		
 			};
 		}
 	}
-	
-	
-	//console.log(div);
 
 };
 
-loadScript("http://localhost:8001/static/js/highlight.pack.js", injectCode);
+loadScript("http://vault.somecode.me/static/js/highlight.pack.js", injectCode);
