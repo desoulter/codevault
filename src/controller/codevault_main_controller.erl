@@ -17,6 +17,9 @@ index('POST', []) ->
 			{error, ErrorList} ->
 				{ok, [{errors, ErrorList}, {new_msg, NewCodeRecord}]}
 			end.
+			
+sendData('GET', []) ->
+	{redirect, ["/"]}.
 
 sendData('POST', []) ->	
 	CodeText = string:strip(Req:post_param("code")),
