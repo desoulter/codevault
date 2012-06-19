@@ -3,4 +3,4 @@ log/
 *.tmproj
 ebin/
 erl_crash.dump
-
+yuicompressor.jar
