@@ -16,6 +16,7 @@
 {"/", [{controller, "main"}, {action, "index"}]}.
 
 {"/getData", [{controller, "cv"}, {action, "getData"}]}.
+{"/sendData", [{controller, "main"}, {action, "sendData"}]}.
 
 % 404 File Not Found handler
 {404, [{controller, "cv"}, {action, "parse"}]}.
