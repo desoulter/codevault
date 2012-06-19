@@ -17,6 +17,7 @@ $(function () {
 $('a[data-toggle="tab"]').on('show', function (e) {
 
 	if ($(e.target).attr("href")=="#preview") {
+		_gaq.push(['_trackEvent', 'tab', 'preview', 'show']);
 		manualSelect = true;
 		text = $("#textarea").val();
 		if (text.length > 0) {
@@ -33,9 +34,11 @@ $('a[data-toggle="tab"]').on('show', function (e) {
 			e.preventDefault();
 			$('#myTab a:first').tab('show');
 			$("#text_container").addClass("error");
+			_gaq.push(['_trackEvent', 'tab', 'preview', 'empty']);
 		}
 	} else {
 		$("#code_snippet").removeClass();
+		_gaq.push(['_trackEvent', 'tab', 'code', 'show']);
 	}
 });
 
@@ -51,12 +54,14 @@ $(document).ready(function(){
 	}
 	
 	$("#textarea").click(function() {
+		_gaq.push(['_trackEvent', 'textarea', 'click']);
 		if($("#text_container").hasClass("error"))
 			$("#text_container").removeClass("error");
 	});
 	
 	$("#code_submit").submit(function(){
 		if (!manualSelect) {
+			_gaq.push(['_trackEvent', 'button', 'submit']);
 			text = $("#textarea").val();
 			$("#code_snippet").text(text);	
 			$('#code_snippet').each(function(i, e) {hljs.highlightBlock(e)});
