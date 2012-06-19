@@ -19,7 +19,7 @@ index('POST', []) ->
 			end.
 			
 sendData('GET', []) ->
-	{redirect, ["/"]}.
+	{redirect, ["/"]};
 
 sendData('POST', []) ->	
 	CodeText = string:strip(Req:post_param("code")),
