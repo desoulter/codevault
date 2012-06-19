@@ -40,6 +40,10 @@ htmlQuote = function (newValue, param) {
 	return newValue;
 }
 
+isChrome = function() {
+	return (navigator.userAgent.toLowerCase().indexOf('chrome') != -1);
+}
+
 addCss = function(cssCode, name, content) {
 	var doc = content || document;
 	if(name) {
@@ -53,7 +57,7 @@ addCss = function(cssCode, name, content) {
 	else se.appendChild(doc.createTextNode(cssCode));
 	var hd = doc.getElementsByTagName("head");
 	if(hd && hd[0]) hd[0].appendChild(se);
-	else if (JSKitLib.isGChrome()) {
+	else if (isChrome()) {
 		doc.body.insertBefore(se, doc.body.firstChild);
 	} else doc.write('<style>'+cssCode+'</style>');
 }
