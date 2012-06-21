@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<link href="bootstrap.min.css" rel="stylesheet">
+<style>
+  html, body {
+	width: 600px;
+	height: 422px;
+	max-height: 422px;
+	margin: 0px;
+	margin-right: 20px;
+	padding: 10px;
+	padding-top: 0px;
+}
+  
+.wdr {
+	width: 98%;
+	resize: vertical;
+}
+
+</style>
+<script>
+function pasteSelection() {
+  chrome.tabs.getSelected(null, function(tab) {
+    chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function (response) {
+      var text = document.getElementById('text'); 
+      text.innerHTML = response.data;
+    });
+  });
+}
+pasteSelection();
+</script>
+
+</head>
+<body>
+	<h1>Code Vault</h1>
+	<hr />
+	<p>Paste your code here:</p>
+	<div id="text_container" class="control-group {% if errors %}error{% endif %}">
+      <div class="controls">
+		<textarea class="wdr" id="text" rows="14" name="code_data" ></textarea>
+      </div>
+    </div>
+	<p><select id="lang_list" name="language_list"><option selected="selected" value="no-highlight">plain</option><option value="1c">1c</option><option value="actionscript">actionscript</option><option value="apache">apache</option><option value="avrasm">avrasm</option><option value="axapta">axapta</option><option value="bash">bash</option><option value="cmake">cmake</option><option value="coffeescript">coffeescript</option><option value="cpp">cpp</option><option value="cs">cs</option><option value="css">css</option><option value="d">d</option><option value="delphi">delphi</option><option value="diff">diff</option><option value="xml/html">xml</option><option value="django">django</option><option value="dos">dos</option><option value="erlang-repl">erlang-repl</option><option value="erlang">erlang</option><option value="glsl">glsl</option><option value="go">go</option><option value="haskell">haskell</option><option value="http">http</option><option value="ini">ini</option><option value="java">java</option><option value="javascript">javascript</option><option value="json">json</option><option value="lisp">lisp</option><option value="lua">lua</option><option value="markdown">markdown</option><option value="matlab">matlab</option><option value="mel">mel</option><option value="nginx">nginx</option><option value="objectivec">objectivec</option><option value="parser3">parser3</option><option value="perl">perl</option><option value="php">php</option><option value="profile">profile</option><option value="python">python</option><option value="r">r</option><option value="rib">rib</option><option value="rsl">rsl</option><option value="ruby">ruby</option><option value="rust">rust</option><option value="scala">scala</option><option value="smalltalk">smalltalk</option><option value="sql">sql</option><option value="tex">tex</option><option value="vala">vala</option><option value="vbscript">vbscript</option><option value="vhdl">vhdl</option></select></p>
+
+<p><button class="btn btn-primary" type="button">Create snippet</button></p>
+<p>&nbsp;</p>
+</body>
+</html>

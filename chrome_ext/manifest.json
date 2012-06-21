@@ -1,0 +1,22 @@
+{
+ "name": "Code Vault",
+ "version": "0.1",
+ "description": "Code vault",
+ "browser_action": {
+   "default_title": "Code Vault",
+   "default_popup": "popup.html" 
+ },
+ "permissions": [
+   "tabs",
+   "chrome://favicon/",
+   "http://vault.somecode.me"
+ ],
+ "content_scripts": [
+  {
+    "matches": ["http://*/*"],
+    "js": ["selection.js"],
+    "run_at": "document_start",
+    "all_frames": true
+  }
+ ]
+}
