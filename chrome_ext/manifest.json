@@ -9,7 +9,9 @@
  "permissions": [
    "tabs",
    "chrome://favicon/",
-   "http://vault.somecode.me"
+   "http://vault.somecode.me",
+	"http://localhost:8001",
+	"http://*/*"
  ],
  "content_scripts": [
   {
