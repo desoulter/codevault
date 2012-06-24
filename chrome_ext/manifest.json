@@ -1,7 +1,7 @@
 {
  "name": "Code Vault",
- "version": "0.1",
- "description": "Code vault",
+ "version": "1.0",
+ "description": "Code snippet storage",
  "browser_action": {
    "default_title": "Code Vault",
    "default_popup": "popup.html" 
@@ -9,9 +9,7 @@
  "permissions": [
    "tabs",
    "chrome://favicon/",
-   "http://vault.somecode.me",
-	"http://localhost:8001",
-	"http://*/*"
+   "http://vault.somecode.me/*"
  ],
  "content_scripts": [
   {

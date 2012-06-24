@@ -27,7 +27,7 @@
 function pasteSelection() {
   chrome.tabs.getSelected(null, function(tab) {
     chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function (response) {
-      var text = document.getElementById('text'); 
+      var text = document.getElementById('textData'); 
       text.innerHTML = response.data;
     });
   });
@@ -37,7 +37,7 @@ pasteSelection();
 function sendData(text, lang)
 {
 	var http = new XMLHttpRequest();
-	http.open("POST", "http://localhost:8001/sendData", true);
+	http.open("POST", "http://vault.somecode.me/sendData", true);
 	
 	var params = "code=" + encodeURIComponent(text) + 
 	             "&lang=" + lang;
@@ -56,7 +56,7 @@ function sendData(text, lang)
 				$("#paste_area").hide();
 				$("#result_area").show();
 				$("#embed_code").text('<div class="codevault-snippet" data="'+resp.result+'"></div><'+'script'+' src="http://vault.somecode.me/static/js/snippetm.js"><'+'/'+'script>');
-				$("#codevault_link").html('Codevault link: <a href="http://cdv.lt/'+resp.result+'">http://cdv.lt/'+resp.result+'</a>');
+				$("#codevault_link").html('Codevault link: <a target="_blank" href="http://cdv.lt/'+resp.result+'">http://cdv.lt/'+resp.result+'</a>');
 			}
 		}
 	}
