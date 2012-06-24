@@ -8,6 +8,11 @@ function pasteSelection() {
 }
 pasteSelection();
 
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelector('button[id="btn-create"]').addEventListener('click', newSnippet);
+  document.querySelector('button[id="back"]').addEventListener('click', resetForm);
+});
+
 function sendData(text, lang)
 {
 	var http = new XMLHttpRequest();

@@ -1,0 +1,18 @@
+html, body {
+	width: 600px;
+	height: 422px;
+	max-height: 422px;
+	margin: 0px;
+	margin-right: 20px;
+	padding: 10px;
+	padding-top: 0px;
+}
+  
+.wdr {
+	width: 98%;
+	resize: vertical;
+}
+
+.err {
+	color:#aa1010;
+}

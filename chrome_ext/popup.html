@@ -2,28 +2,7 @@
 <html>
 <head>
 <link href="bootstrap.min.css" rel="stylesheet">
-<style>
-  html, body {
-	width: 600px;
-	height: 422px;
-	max-height: 422px;
-	margin: 0px;
-	margin-right: 20px;
-	padding: 10px;
-	padding-top: 0px;
-}
-  
-.wdr {
-	width: 98%;
-	resize: vertical;
-}
-
-.err {
-	color:#aa1010;
-}
-
-</style>
-
+<link href="common.css" rel="stylesheet">
 </head>
 <body>
 	<h1>Code Vault</h1>
@@ -37,12 +16,12 @@
     </div>
 	<p><select id="lang_list" name="language_list"><option selected="selected" value="no-highlight">plain</option><option value="1c">1c</option><option value="actionscript">actionscript</option><option value="apache">apache</option><option value="avrasm">avrasm</option><option value="axapta">axapta</option><option value="bash">bash</option><option value="cmake">cmake</option><option value="coffeescript">coffeescript</option><option value="cpp">c++</option><option value="cs">cs</option><option value="css">css</option><option value="d">d</option><option value="delphi">delphi</option><option value="diff">diff</option><option value="xml">xml/html</option><option value="django">django</option><option value="dos">dos</option><option value="erlang-repl">erlang-repl</option><option value="erlang">erlang</option><option value="glsl">glsl</option><option value="go">go</option><option value="haskell">haskell</option><option value="http">http</option><option value="ini">ini</option><option value="java">java</option><option value="javascript">javascript</option><option value="json">json</option><option value="lisp">lisp</option><option value="lua">lua</option><option value="markdown">markdown</option><option value="matlab">matlab</option><option value="mel">mel</option><option value="nginx">nginx</option><option value="objectivec">objective-c</option><option value="parser3">parser3</option><option value="perl">perl</option><option value="php">php</option><option value="profile">profile</option><option value="python">python</option><option value="r">r</option><option value="rib">rib</option><option value="rsl">rsl</option><option value="ruby">ruby</option><option value="rust">rust</option><option value="scala">scala</option><option value="smalltalk">smalltalk</option><option value="sql">sql</option><option value="tex">TeX</option><option value="vala">vala</option><option value="vbscript">vbscript</option><option value="vhdl">vhdl</option></select></p>
 <p class="err" id="error" style="display:none;">Error, try again.</p>
-<p><button id="btn-create" data-loading-text="Create snippet..." class="btn btn-primary" type="button" onclick="newSnippet();">Create snippet</button></p>
+<p><button id="btn-create" data-loading-text="Create snippet..." class="btn btn-primary" type="button">Create snippet</button></p>
 </div>
 <div id="result_area" style="display:none;">
 	<p id="codevault_link"></p>
 	<p><textarea class="span6" rows="3" id="embed_code"></textarea></p>
-	<p><button type="button" onclick="resetForm();" class="btn btn-success">Back</button></p>
+	<p><button id="back" type="button" class="btn btn-success">Back</button></p>
 </div>
 <p>&nbsp;</p>
 <script src="jquery.min.js"></script>

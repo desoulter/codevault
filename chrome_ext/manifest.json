@@ -1,6 +1,6 @@
 {
  "name": "Code Vault",
- "version": "1.0",
+ "version": "1.2",
  "description": "Code snippet storage",
  "browser_action": {
    "default_title": "Code Vault",
