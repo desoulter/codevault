@@ -4,8 +4,14 @@
  "description": "Code snippet storage",
  "browser_action": {
    "default_title": "Code Vault",
-   "default_popup": "popup.html" 
+   "default_popup": "popup.html",
+   "default_icon": "icon.png"
  },
+"icons": { "16": "icon_016.png",
+           "48": "icon_048.png",
+          "128": "icon_128.png",
+		  "256": "icon_256.png" },
+ "manifest_version": 2,
  "permissions": [
    "tabs",
    "chrome://favicon/",
