@@ -18,6 +18,10 @@
 	resize: vertical;
 }
 
+.err {
+	color:#aa1010;
+}
+
 </style>
 <script>
 function pasteSelection() {
@@ -40,45 +44,65 @@ function sendData(text, lang)
 
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");	
 	http.send(params);
-	
-	console.log('sending...');
-	
-	http.onreadystatechange = function() {//Call a function when the state changes.
+
+	http.onreadystatechange = function() {
 		if(http.readyState == 4 && http.status == 200) {
-			//localStorage["API_RESPONSE"] = http.responseText;
-			console.log("got a response! " +http.responseText);
+			var resp = JSON.parse(http.responseText);
+			$("#btn-create").button('reset');
+			if (resp.result=="-1") {
+				$("#error").show();
+			} else {
+				$("#error").hide();
+				$("#paste_area").hide();
+				$("#result_area").show();
+				$("#embed_code").text('<div class="codevault-snippet" data="'+resp.result+'"></div><'+'script'+' src="http://vault.somecode.me/static/js/snippetm.js"><'+'/'+'script>');
+				$("#codevault_link").html('Codevault link: <a href="http://cdv.lt/'+resp.result+'">http://cdv.lt/'+resp.result+'</a>');
+			}
 		}
 	}
-	
-	    //var resp = JSON.parse(xhr.responseText);
-		//alert(resp);
-	
+}
+
+function resetForm()
+{
+	$("#error").hide();
+	$("#result_area").hide();
+	$("#paste_area").show();
+	$("#textData").val('');
 }
 
 function newSnippet() {
-	var snippetText = document.getElementById('text').value;
+	var snippetText = document.getElementById('textData').value;
 	var snippetType = document.getElementById('lang_list').value;
-	sendData(snippetText, snippetType);
-	//chrome.extension.sendRequest({ method: 'submit', snippet: snippetText, lang: snippetType }, function(response) {
-	//	alert(response);
-	//});
+	
+	if (snippetText.length > 0) {
+		$("#btn-create").button('loading');
+		sendData(snippetText, snippetType);
+	}
 }
 
 </script>
-
 </head>
 <body>
 	<h1>Code Vault</h1>
 	<hr />
+<div id="paste_area">
 	<p>Paste your code here:</p>
-	<div id="text_container" class="control-group {% if errors %}error{% endif %}">
+	<div id="text_container" class="control-group">
       <div class="controls">
-		<textarea class="wdr" id="text" rows="14" name="code_data" ></textarea>
+		<textarea class="wdr" id="textData" rows="14" name="code_data" ></textarea>
       </div>
     </div>
-	<p><select id="lang_list" name="language_list"><option selected="selected" value="no-highlight">plain</option><option value="1c">1c</option><option value="actionscript">actionscript</option><option value="apache">apache</option><option value="avrasm">avrasm</option><option value="axapta">axapta</option><option value="bash">bash</option><option value="cmake">cmake</option><option value="coffeescript">coffeescript</option><option value="cpp">cpp</option><option value="cs">cs</option><option value="css">css</option><option value="d">d</option><option value="delphi">delphi</option><option value="diff">diff</option><option value="xml/html">xml</option><option value="django">django</option><option value="dos">dos</option><option value="erlang-repl">erlang-repl</option><option value="erlang">erlang</option><option value="glsl">glsl</option><option value="go">go</option><option value="haskell">haskell</option><option value="http">http</option><option value="ini">ini</option><option value="java">java</option><option value="javascript">javascript</option><option value="json">json</option><option value="lisp">lisp</option><option value="lua">lua</option><option value="markdown">markdown</option><option value="matlab">matlab</option><option value="mel">mel</option><option value="nginx">nginx</option><option value="objectivec">objectivec</option><option value="parser3">parser3</option><option value="perl">perl</option><option value="php">php</option><option value="profile">profile</option><option value="python">python</option><option value="r">r</option><option value="rib">rib</option><option value="rsl">rsl</option><option value="ruby">ruby</option><option value="rust">rust</option><option value="scala">scala</option><option value="smalltalk">smalltalk</option><option value="sql">sql</option><option value="tex">tex</option><option value="vala">vala</option><option value="vbscript">vbscript</option><option value="vhdl">vhdl</option></select></p>
-
-<p><button class="btn btn-primary" type="button" onclick="newSnippet();">Create snippet</button></p>
+	<p><select id="lang_list" name="language_list"><option selected="selected" value="no-highlight">plain</option><option value="1c">1c</option><option value="actionscript">actionscript</option><option value="apache">apache</option><option value="avrasm">avrasm</option><option value="axapta">axapta</option><option value="bash">bash</option><option value="cmake">cmake</option><option value="coffeescript">coffeescript</option><option value="cpp">c++</option><option value="cs">cs</option><option value="css">css</option><option value="d">d</option><option value="delphi">delphi</option><option value="diff">diff</option><option value="xml">xml/html</option><option value="django">django</option><option value="dos">dos</option><option value="erlang-repl">erlang-repl</option><option value="erlang">erlang</option><option value="glsl">glsl</option><option value="go">go</option><option value="haskell">haskell</option><option value="http">http</option><option value="ini">ini</option><option value="java">java</option><option value="javascript">javascript</option><option value="json">json</option><option value="lisp">lisp</option><option value="lua">lua</option><option value="markdown">markdown</option><option value="matlab">matlab</option><option value="mel">mel</option><option value="nginx">nginx</option><option value="objectivec">objective-c</option><option value="parser3">parser3</option><option value="perl">perl</option><option value="php">php</option><option value="profile">profile</option><option value="python">python</option><option value="r">r</option><option value="rib">rib</option><option value="rsl">rsl</option><option value="ruby">ruby</option><option value="rust">rust</option><option value="scala">scala</option><option value="smalltalk">smalltalk</option><option value="sql">sql</option><option value="tex">TeX</option><option value="vala">vala</option><option value="vbscript">vbscript</option><option value="vhdl">vhdl</option></select></p>
+<p class="err" id="error" style="display:none;">Error, try again.</p>
+<p><button id="btn-create" data-loading-text="Create snippet..." class="btn btn-primary" type="button" onclick="newSnippet();">Create snippet</button></p>
+</div>
+<div id="result_area" style="display:none;">
+	<p id="codevault_link"></p>
+	<p><textarea class="span6" rows="3" id="embed_code"></textarea></p>
+	<p><button type="button" onclick="resetForm();" class="btn btn-success">Back</button></p>
+</div>
 <p>&nbsp;</p>
+<script src="jquery.min.js"></script>
+<script src="button.js"></script>
 </body>
 </html>
