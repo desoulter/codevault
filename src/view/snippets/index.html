@@ -11,13 +11,13 @@
 
 <h1>Welcome to Code Vault</h1>
 <p>Yet another code storage.</p>
-<h4>Recent Snippets</h4>
+<h4>Recent 30 Snippets</h4>
 
 <p></p>
 
 {% for coderecord in coderecords %}
     <p>
-        <a href="/cv/{{ coderecord.id|url_base62 }}">{{ coderecord.code_time|date:"j F Y" }}</a>
+        <a href="/cv/{{ coderecord.id|url_base62 }}">{{ coderecord.code_time|date:"j F Y" }}</a><strong> | {{ coderecord.code_language|escape }}</strong>
         <pre><code>{{ coderecord.code_text|escape }}</code></pre>
     </p>
     <p>&nbsp;</p>
