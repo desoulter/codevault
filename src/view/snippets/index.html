@@ -1,0 +1,26 @@
+{% extends "layout/application.html" %}
+
+{% block title %}Code Vault | Recent Snippets{% endblock %}
+{% block topmenu %}
+  <li><a href="/">Home</a></li>
+  <li class="active"><a href="/snippets">Snippets</a></li>
+  <li><a data-toggle="modal" href="#about">About</a></li>
+  <li><a target="_blank" href="https://chrome.google.com/webstore/detail/jlkbbpmihbehjcabecbknmddmknconbf">Chrome Extension</a></li>
+{% endblock %}
+{% block content %}
+
+<h1>Welcome to Code Vault</h1>
+<p>Yet another code storage.</p>
+<h4>Recent Snippets</h4>
+
+<p></p>
+
+{% for coderecord in coderecords %}
+    <p>
+        <a href="/">{{ coderecord.code_time|date:"j F Y" }}</a>
+        <pre><code>{{ coderecord.code_text|escape }}</code></pre>
+    </p>
+    <p>&nbsp;</p>
+{% endfor %}
+
+{% endblock %}
