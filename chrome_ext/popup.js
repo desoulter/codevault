@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function sendData(text, lang)
 {
 	var http = new XMLHttpRequest();
-	http.open("POST", "http://vault.somecode.me/sendData", true);
+	http.open("POST", "http://cdv.lt/sendData", true);
 	
 	var params = "code=" + encodeURIComponent(text) + 
 	             "&lang=" + lang;
@@ -34,7 +34,7 @@ function sendData(text, lang)
 				$("#error").hide();
 				$("#paste_area").hide();
 				$("#result_area").show();
-				$("#embed_code").text('<div class="codevault-snippet" data="'+resp.result+'"></div><'+'script'+' src="http://vault.somecode.me/static/js/snippetm.js"><'+'/'+'script>');
+				$("#embed_code").text('<div class="codevault-snippet" data="'+resp.result+'"></div><'+'script'+' src="http://cdv.lt/static/js/snippetm.js"><'+'/'+'script>');
 				$("#codevault_link").html('Codevault link: <a target="_blank" href="http://cdv.lt/'+resp.result+'">http://cdv.lt/'+resp.result+'</a>');
 			}
 		}

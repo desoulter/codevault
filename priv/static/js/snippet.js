@@ -152,7 +152,7 @@ var injectCode = function() {
 		var current_div = div[i];
 		var id = current_div.getAttribute('data');
 		
-		JSONP.get( 'http://vault.somecode.me/getData', {sn:id}, function(data){			
+		JSONP.get( 'http://cdv.lt/getData', {sn:id}, function(data){			
 			highlighter(data);
 		});
 	}
@@ -174,4 +174,4 @@ var injectCode = function() {
 
 };
 
-loadScript("http://vault.somecode.me/static/js/highlight.pack.js", injectCode);
+loadScript("http://cdv.lt/static/js/highlight.pack.js", injectCode);

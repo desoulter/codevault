@@ -15,7 +15,7 @@
  "permissions": [
    "tabs",
    "chrome://favicon/",
-   "http://vault.somecode.me/*"
+   "http://cdv.lt/*"
  ],
  "content_scripts": [
   {
