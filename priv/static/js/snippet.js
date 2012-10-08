@@ -157,18 +157,26 @@ var injectCode = function() {
 		});
 	}
 	
+	function hasClass(ele,cls) {
+		return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+	}
+	
 	function highlighter(data)
 	{
 		for (var i=0; i< div.length; i++) {
 			var current_div = div[i];
 			var id = current_div.getAttribute('data');
-			if (id==data.request) {
+			
+			if (id==data.request && !hasClass(current_div, "already")) {
+				current_div.className += " " + data.language;
 				if(data.language)
 					current_div.innerHTML = "<pre><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
 				else
 					current_div.innerHTML = "<pre><code>"+htmlQuote(data.code_record)+"</code></pre>";
-				hljs.highlightBlock(current_div, null, true);		
-			};
+				hljs.highlightBlock(current_div, null, false);		
+
+				current_div.className += " already";
+			}
 		}
 	}
 
