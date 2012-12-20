@@ -11,7 +11,11 @@
 %   {404, [{controller, "Controller"}, {action, "Action"}, {id, "42"}]}.
 %   {404, [{application, some_app}, {controller, "Controller"}, {action, "Action"}, {id, "42"}]}
 
+{"/snippets/page(\\d+)", [{controller, "snippets"}, {action, "page"},{id, '$1'}]}.
+
 {"/about", [{controller, "about"}, {action, "index"}]}.
+
+
 
 % Front page
 {"/", [{controller, "main"}, {action, "index"}]}.

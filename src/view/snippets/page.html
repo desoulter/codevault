@@ -1,21 +1,33 @@
 {% extends "layout/application.html" %}
 
-{% block title %}Code Vault | Recent Snippets{% endblock %}
+{% block title %}Code Vault{% endblock %}
+
 {% block topmenu %}
   <li><a href="/">Home</a></li>
-  <li class="active"><a href="/snippets">Snippets</a></li>
+  <li><a href="/snippets">Snippets</a></li>
   <li><a data-toggle="modal" href="#about">About</a></li>
   <li><a target="_blank" href="https://chrome.google.com/webstore/detail/jlkbbpmihbehjcabecbknmddmknconbf">Chrome Extension</a></li>
 {% endblock %}
+
 {% block content %}
 
 <h1>Welcome to Code Vault</h1>
 <p>Yet another code storage.</p>
+
 <h4>Recent snippets</h4>
 
 <p></p>
 
-Page 1 <a href="/snippets/{{ nextPage }}"> >> </a>
+{% if currentPage > 2 %}
+<a href="/snippets/{{ prevPage }}"> << </a>
+{% else %}
+<a href="/snippets/"> << </a>
+{% endif %}
+Page {{ currentPage }}
+{% if currentPage < totalPages %}
+<a href="/snippets/{{ nextPage }}"> >> </a>
+{% endif %}
+
 <p></p>
 
 {% for coderecord in coderecords %}
@@ -26,6 +38,17 @@ Page 1 <a href="/snippets/{{ nextPage }}"> >> </a>
     <p>&nbsp;</p>
 {% endfor %}
 
-Page 1 <a href="/snippets/{{ nextPage }}"> >> </a>
+{% if currentPage > 2 %}
+<a href="/snippets/{{ prevPage }}"> << </a>
+{% else %}
+<a href="/snippets/"> << </a>
+{% endif %}
+Page {{ currentPage }}
+{% if currentPage < totalPages %}
+<a href="/snippets/{{ nextPage }}"> >> </a>
+{% endif %}
 
 {% endblock %}
+
+{% block jscript %}
+<script src="/static/js/parse.js"></script>{% endblock %}
