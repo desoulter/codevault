@@ -119,6 +119,7 @@ var JSONP = (function(){
 var injectCode = function() {
 	
 	addCss(
+	".credits a { display: block; padding: 0.5em; background-color: transparent; color: #839496; width: 148px; position:absolute; right: 20px; top: 22px; }" +	
 	"code,	pre {	  padding: 0 3px 2px;	  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
 	"font-size: 12px;	  color: #333333;	  -webkit-border-radius: 3px;	     -moz-border-radius: 3px;	          border-radius: 3px;	}" +
 	"code {	  padding: 2px 4px;	  color: #d14;	  background-color: #f7f7f9;	  border: 1px solid #e1e1e8;	}" +
@@ -170,9 +171,9 @@ var injectCode = function() {
 			if (id==data.request && !hasClass(current_div, "already")) {
 				current_div.className += " " + data.language;
 				if(data.language)
-					current_div.innerHTML = "<pre><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
+					current_div.innerHTML = "<pre><div class=\"credits\"><a href=\"http://cdv.lt/"+id+"\">powered by Code Vault</a></div><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
 				else
-					current_div.innerHTML = "<pre><code>"+htmlQuote(data.code_record)+"</code></pre>";
+					current_div.innerHTML = "<pre><div class=\"credits\"><a href=\"http://cdv.lt/"+id+"\">powered by Code Vault</a></div><code>"+htmlQuote(data.code_record)+"</code></pre>";
 				hljs.highlightBlock(current_div, null, false);		
 
 				current_div.className += " already";
