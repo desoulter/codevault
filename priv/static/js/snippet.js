@@ -15,6 +15,35 @@ function loadScript(url, callback)
    head.appendChild(script);
 }
 
+HTMLElement.prototype.wrap = function(elms) {
+    // Convert `elms` to an array, if necessary.
+    if (!elms.length) elms = [elms];
+    
+    // Loops backwards to prevent having to clone the wrapper on the
+    // first element (see `child` below).
+    for (var i = elms.length - 1; i >= 0; i--) {
+        var child = (i > 0) ? this.cloneNode(true) : this;
+        var el    = elms[i];
+        
+        // Cache the current parent and sibling.
+        var parent  = el.parentNode;
+        var sibling = el.nextSibling;
+        
+        // Wrap the element (is automatically removed from its current
+        // parent).
+        child.appendChild(el);
+        
+        // If the element had a sibling, insert the wrapper before
+        // the sibling to maintain the HTML structure; otherwise, just
+        // append it to the parent.
+        if (sibling) {
+            parent.insertBefore(child, sibling);
+        } else {
+            parent.appendChild(child);
+        }
+    }
+};
+
 getElementsByClass = function(node, searchClass, tag) {
 	var classElements = [];
 	node = node || document;
@@ -119,8 +148,9 @@ var JSONP = (function(){
 var injectCode = function() {
 	
 	addCss(
-	".credits a {font-size: 12px; font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
-	" display: block; padding: 0.5em; background-color: transparent; color: #bc221f; width: 148px; position:absolute; right: 20px; top: 20px; }" +	
+	".cdv_wrapper { position:relative; } " +
+	".cdv_credits a { font-size: 12px; font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; float: right; " +
+	" display: block; padding: 0.5em; background-color: transparent; color: #bc221f; width: 148px; position:absolute; right: 10px; top: 12px; }" +	
 	"code,	pre {	  padding: 0 3px 2px;	  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
 	"font-size: 12px;	  color: #333333;	  -webkit-border-radius: 3px;	     -moz-border-radius: 3px;	          border-radius: 3px;	}" +
 	"code {	  padding: 2px 4px;	  color: #d14;	  background-color: #f7f7f9;	  border: 1px solid #e1e1e8;	}" +
@@ -162,6 +192,10 @@ var injectCode = function() {
 	function hasClass(ele,cls) {
 		return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
 	}
+
+	function insertAfter(referenceNode, newNode) {
+	    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+	}
 	
 	function highlighter(data)
 	{
@@ -175,7 +209,7 @@ var injectCode = function() {
 				var parent = current_div.parentNode;
 
 				var elDiv = document.createElement('div');
-				elDiv.setAttribute('class', 'credits');
+				elDiv.setAttribute('class', 'cdv_credits');
 
 				var elA = document.createElement('a');
 				elA.setAttribute('href', 'http://cdv.lt/'+id);
@@ -183,9 +217,14 @@ var injectCode = function() {
 
 				elDiv.appendChild(elA);
 
-				console.log(elDiv);
+				var cdvWrapper = document.createElement('div');
+				cdvWrapper.setAttribute('class', 'cdv_wrapper');
 
-				parent.insertBefore(elDiv, current_div);
+				//parent.insertBefore(cdvWrapper, current_div);
+
+				cdvWrapper.wrap(current_div);
+
+				insertAfter(current_div, elDiv);
 
 				if(data.language)
 					current_div.innerHTML = "<pre><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
