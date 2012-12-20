@@ -17,7 +17,7 @@
 
 {% for coderecord in coderecords %}
     <p>
-        <a href="/cv/{{ coderecord.id|url_base62 }}">{{ coderecord.code_time|date:"j F Y" }}</a><strong> | {{ coderecord.code_language|escape }}</strong>
+        <a href="/{{ coderecord.id|url_base62 }}">{{ coderecord.code_time|date:"j F Y" }}</a><strong> | {{ coderecord.code_language|escape }}</strong>
         <pre><code>{{ coderecord.code_text|escape }}</code></pre>
     </p>
     <p>&nbsp;</p>
