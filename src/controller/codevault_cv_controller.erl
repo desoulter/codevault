@@ -30,7 +30,7 @@ getData('GET', []) ->
 				false ->
 					{jsonp, Callback, [{code_record, Current:code_text()}, {language, Current:code_language()}, {request, Data}]};
 				true -> 
-					{json, [{code_record, Current:code_text(), {language, Current:code_language()}}]}
+					{json, [{code_record, Current:code_text()}, {language, Current:code_language()}]}
 			end;
 		true ->
 			case Callback == undefined of
