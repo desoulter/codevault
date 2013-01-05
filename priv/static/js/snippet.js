@@ -148,13 +148,15 @@ var JSONP = (function(){
 var injectCode = function() {
 	
 	addCss(
-	".cdv_wrapper { position:relative; } " +
-	".cdv_credits a { font-size: 12px; font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; float: right; " +
-	" display: block; padding: 0.5em; background-color: transparent; color: #bc221f; width: 148px; position:absolute; right: 10px; top: 12px; }" +	
-	"code,	pre {	  padding: 0 3px 2px;	  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
-	"font-size: 12px;	  color: #333333;	  -webkit-border-radius: 3px;	     -moz-border-radius: 3px;	          border-radius: 3px;	}" +
+	".cdv_credits { background: #003947; text-align: right; border-radius: 3px 3px 0 0; -webkit-border-radius: 3px 3px 0 0;"+
+	" -moz-border-radius: 3px 3px 0 0; padding: 0.3em 1em 0.3em 0.5em; } " +
+	".cdv_credits a { font-size: 12px; font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; " +
+	" background-color: transparent; color: #bc221f; "+ 
+	" }" +	
+	"code,	pre {	margin: 0;  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
+	"font-size: 12px;	  color: #333333;	  -webkit-border-radius: 0 0 3px 3px;	     -moz-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px;	}" +
 	"code {	  padding: 2px 4px;	  color: #d14;	  background-color: #f7f7f9;	  border: 1px solid #e1e1e8;	}" +
-	"pre {	  display: block;	  padding: 8.5px;	  margin: 0 0 9px;	  font-size: 12.025px;	  line-height: 18px;	  word-break: break-all;" +
+	".cdv_wrapper {	  display: block;	  padding: 2px;	  margin: 0 0 9px;	  font-size: 12.025px;	  line-height: 18px;	  word-break: break-all;" +
 	"word-wrap: break-word;	  white-space: pre;	  white-space: pre-wrap;	  background-color: #f5f5f5;	  border: 1px solid #ccc;" +
 	"border: 1px solid rgba(0, 0, 0, 0.15);	  -webkit-border-radius: 4px;	     -moz-border-radius: 4px;	          border-radius: 4px;	}" +
 	"pre.prettyprint { 	  margin-bottom: 18px;	}" +
@@ -220,11 +222,11 @@ var injectCode = function() {
 				var cdvWrapper = document.createElement('div');
 				cdvWrapper.setAttribute('class', 'cdv_wrapper');
 
-				//parent.insertBefore(cdvWrapper, current_div);
-
 				cdvWrapper.wrap(current_div);
 
-				insertAfter(current_div, elDiv);
+				cdvWrapper.insertBefore(elDiv, current_div);
+
+				//insertAfter(current_div, elDiv);
 
 				if(data.language)
 					current_div.innerHTML = "<pre><code class=\""+data.language+"\">"+htmlQuote(data.code_record)+"</code></pre>";
