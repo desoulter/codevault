@@ -153,7 +153,7 @@ var injectCode = function() {
 	".cdv_credits a { font-size: 12px; font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; " +
 	" background-color: transparent; color: #bc221f; "+ 
 	" }" +	
-	"code,	pre {	margin: 0;  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
+	"code,	pre { padding: 0; border: 0;	margin: 0;  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;" +
 	"font-size: 12px;	  color: #333333;	  -webkit-border-radius: 0 0 3px 3px;	     -moz-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px;	}" +
 	"code {	  padding: 2px 4px;	  color: #d14;	  background-color: #f7f7f9;	  border: 1px solid #e1e1e8;	}" +
 	".cdv_wrapper {	  display: block;	  padding: 2px;	  margin: 0 0 9px;	  font-size: 12.025px;	  line-height: 18px;	  word-break: break-all;" +
