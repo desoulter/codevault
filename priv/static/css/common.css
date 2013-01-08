@@ -12,3 +12,21 @@ body {
 .powered {
 	float:right;
 }
+
+.donate_button {
+    float: left;
+}
+
+.fb-like {
+    float: left;
+}
+
+.flattr_button {
+    float: left;
+    margin-left: 20px;
+}
+
+.donate_button input {
+    width: 74px;
+    margin-left: 15px;
+}
