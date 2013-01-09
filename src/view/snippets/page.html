@@ -1,6 +1,10 @@
 {% extends "layout/application.html" %}
 
-{% block title %}Code Vault{% endblock %}
+{% block title %}Code Vault | Recent 30 Snippets{% endblock %}
+
+{% block description %}Recent 30 snippets{% endblock %}
+
+{% block keywords %} {% for coderecord in coderecords %} {{ coderecord.code_language|escape }}, {% endfor %} {% endblock %}
 
 {% block topmenu %}
   <li><a href="/">Home</a></li>
@@ -19,13 +23,13 @@
 <p></p>
 
 {% if currentPage > 2 %}
-<a href="/snippets/{{ prevPage }}"> << </a>
+<a rel="prev" href="/snippets/{{ prevPage }}"> &laquo; </a>
 {% else %}
-<a href="/snippets/"> << </a>
+<a rel="prev" href="/snippets/"> &laquo; </a>
 {% endif %}
-Page {{ currentPage }}
+Page #{{ currentPage }}
 {% if currentPage < totalPages %}
-<a href="/snippets/{{ nextPage }}"> >> </a>
+<a rel="next" href="/snippets/{{ nextPage }}"> &raquo; </a>
 {% endif %}
 
 <p></p>
@@ -39,13 +43,13 @@ Page {{ currentPage }}
 {% endfor %}
 
 {% if currentPage > 2 %}
-<a href="/snippets/{{ prevPage }}"> << </a>
+<a rel="prev" href="/snippets/{{ prevPage }}"> &laquo; </a>
 {% else %}
-<a href="/snippets/"> << </a>
+<a rel="prev" href="/snippets/"> &laquo; </a>
 {% endif %}
-Page {{ currentPage }}
+Page #{{ currentPage }}
 {% if currentPage < totalPages %}
-<a href="/snippets/{{ nextPage }}"> >> </a>
+<a rel="next" href="/snippets/{{ nextPage }}"> &raquo; </a>
 {% endif %}
 
 {% endblock %}

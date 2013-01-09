@@ -1,6 +1,8 @@
 {% extends "layout/application.html" %}
 
-{% block title %}Code Vault{% endblock %}
+{% block title %}Code Vault | {{ code_record.code_language|escape }} snippet {% endblock %}
+
+{% block description %} {{ code_record.code_language|escape }} snippet, added {{ code_record.code_time|date:"j F Y" }} {% endblock %}
 
 {% block topmenu %}
   <li><a href="/">Home</a></li>
@@ -11,18 +13,20 @@
 
 {% block content %}
 
-<h1>Welcome to Code Vault</h1>
-<p>Yet another code storage.</p>
+<h1>{% if code_record.code_language != "null" %} {{ code_record.code_language|escape|title }} {% else %} Saved {% endif %}snippet</h1>
+<h4>{{ code_record.code_time|date:"j F Y" }}</h4>
 
 {% if code_record %}
 <fieldset class="well">
-	<p>Codevault link: <a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
-	<p><button id="share_button" class="btn btn-mini btn-primary"><i class="icon-globe icon-white"></i> Copy link</button>&nbsp;&nbsp;<button id="share_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy snippet</button></p>
-	<p><a href="#collapse" data-toggle="collapse" data-target="#embed">Or simply copy and paste these two lines into your website.</a></p>
-	<div id="embed" class="collapse"><textarea class="span6" rows="3" id="embed_code"><div class="codevault-snippet" data="{{ data_id }}"></div>
+
+	<pre><code id="code_snippet" {% if code_record.code_language %} class="{{ code_record.code_language }}" {% endif %}>{{ code_record.code_text|escape }}</code></pre>
+    <h3>Sharing</h3>
+        <p>Codevault link: <a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
+    <p><button id="share_button" class="btn btn-mini btn-primary"><i class="icon-globe icon-white"></i> Copy link</button>&nbsp;&nbsp;<button id="share_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy snippet</button></p>
+    <p>Or simply copy and paste these two lines into your website:</p>
+    <div id="embed"><textarea class="span6" rows="3" id="embed_code"><div class="codevault-snippet" data="{{ data_id }}"></div>
 <script src="http://cdv.lt/static/js/snippetm.js"></script></textarea>
 <p><button id="script_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy embedded script</button></p></div>
-	<pre><code id="code_snippet" {% if code_record.code_language %} class="{{ code_record.code_language }}" {% endif %}>{{ code_record.code_text|escape }}</code></pre>
 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://{{ share_url }}" data-counturl="http://{{ current_url }}" data-text="Check this snippet on the #CodeVault" data-lang="en">Tweet</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
 </fieldset>
