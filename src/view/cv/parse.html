@@ -12,16 +12,18 @@
 {% endblock %}
 
 {% block content %}
+<div itemscope itemtype="http://schema.org/Article">
 
-<h1>{% if code_record.code_language != "null" %} {{ code_record.code_language|escape|title }} {% else %} Saved {% endif %}snippet</h1>
-<h4>{{ code_record.code_time|date:"j F Y" }}</h4>
+<h1 itemprop="name">{% if code_record.code_language != "null" %} {{ code_record.code_language|escape|title }} {% else %} Saved {% endif %}snippet</h1>
+<h4><time datetime="{{ code_record.code_time|date:"Y-m-d" }}">{{ code_record.code_time|date:"j F Y" }}</time></h4>
 
 {% if code_record %}
+
 <fieldset class="well">
 
 	<pre><code id="code_snippet" {% if code_record.code_language %} class="{{ code_record.code_language }}" {% endif %}>{{ code_record.code_text|escape }}</code></pre>
     <h3>Sharing</h3>
-        <p>Codevault link: <a id="share_url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
+        <p>Codevault link: <a id="share_url" itemprop="url" href="http://{{ share_url }}">http://{{ share_url }}</a></p>
     <p><button id="share_button" class="btn btn-mini btn-primary"><i class="icon-globe icon-white"></i> Copy link</button>&nbsp;&nbsp;<button id="share_code_button" class="btn btn-mini btn-primary"><i class="icon-share icon-white"></i> Copy snippet</button></p>
     <p>Or simply copy and paste these two lines into your website:</p>
     <div id="embed"><textarea class="span6" rows="3" id="embed_code"><div class="codevault-snippet" data="{{ data_id }}"></div>
@@ -54,6 +56,8 @@ var google_conversion_value = 0;
 
 
 {% endif %}
+
+</div>
 
 {% endblock %}
 
