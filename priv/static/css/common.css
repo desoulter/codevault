@@ -19,11 +19,11 @@ body {
 
 .fb-like {
     float: left;
+    margin-left: 15px;
 }
 
 .flattr_button {
     float: left;
-    margin-left: 20px;
 }
 
 .donate_button input {
