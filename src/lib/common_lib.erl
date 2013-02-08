@@ -1,5 +1,12 @@
 -module(common_lib). 
--export([split_first/2,split/2,floor/1, ceiling/1]). 
+-export([split_first/2,split/2,floor/1, ceiling/1, index_of/2]). 
+
+index_of(Item, List) ->
+  index_of(Item, List, 1).
+
+index_of(_, [], _)  -> not_found;
+index_of(Item, [Item|_], Index) -> Index;
+index_of(Item, [_|Tl], Index) -> index_of(Item, Tl, Index+1).
 
 floor(X) ->
     T = erlang:trunc(X),

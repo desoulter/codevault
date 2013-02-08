@@ -15,13 +15,15 @@
 
 {"/about", [{controller, "about"}, {action, "index"}]}.
 
-
-
 % Front page
 {"/", [{controller, "main"}, {action, "index"}]}.
 
 {"/getData", [{controller, "cv"}, {action, "getData"}]}.
 {"/sendData", [{controller, "main"}, {action, "sendData"}]}.
+
+%{"/createKey", [{controller, "api"}, {action, "createKey"}]}.
+
+{"/api/snippet/([a-zA-Z0-9]+)", [{controller, "api"}, {action, "snippet"},{id, '$1'}]}.
 
 % 404 File Not Found handler
 {404, [{controller, "cv"}, {action, "parse"}]}.

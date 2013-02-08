@@ -16,7 +16,7 @@ parse('GET', []) ->
 		false ->
 			{ok, [{code_record, Current}, {share_url, ShareUrl}, {current_url, ShareFullUrl}, {data_id, Split}]};
 		true ->
-			{redirect, "/"}
+			{redirect, ["/"]}
 		end.
 		
 getData('GET', []) ->

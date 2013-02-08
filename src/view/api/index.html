@@ -1,0 +1,86 @@
+{% extends "layout/application.html" %}
+
+{% block title %}Code Vault API{% endblock %}
+
+{% block topmenu %}
+  <li><a href="/">Home</a></li>
+  <li><a href="/snippets">Snippets</a></li>
+  <li class="active"><a href="/api">API</a></li>
+  <li><a data-toggle="modal" href="#about">About</a></li>
+  <li><a target="_blank" href="https://chrome.google.com/webstore/detail/jlkbbpmihbehjcabecbknmddmknconbf">Chrome Extension</a></li>
+{% endblock %}
+
+{% block content %}
+
+<h1>API usage</h1>
+
+{% comment %}
+
+<p>You can create API key with one click.</p>
+<p>Just enter your email here and you get you own API key</p>
+
+<form class=" form-inline" action="/api/createKey" method="post" id="email_submit">
+<fieldset>
+<input type="text" placeholder="Enter email…" name="email_api" />
+<button class="btn btn-primary" id="store_button" type="submit"><i class="icon-wrench icon-white"></i> Get API Key!</button>
+</fieldset>
+</form>
+
+
+
+<pre>
+<h3>Get recent 50 snippets:</h3>
+<p><strong>GET:</strong> http://cdv.lt/api/list</p>
+<p><strong>Response:</strong> json</p>
+</pre>
+{% endcomment %}
+
+<pre>
+<h3>Get a specific snippet:</h3>
+<p><strong>GET:</strong> http://cdv.lt/api/snippet/%id%</p>
+<p><strong>Example:</strong> http://cdv.lt/api/snippet/MK</p>
+<p><strong>Response:</strong> json example: 
+  {
+    "snippet": {
+        "snippetId": "MK",
+        "snippetData": "&lt;?php echo 123;",
+        "snippetLanguage": "php",
+        "snippetCreationTime": 1359967620
+    }
+  }</p>
+<p><strong>Error:</strong> json example: {"error":"emptyIdRequest"} or {"error":"unknownId"}</p>
+</pre>
+
+<pre>
+<h3>Get a language list:</h3>
+<p><strong>GET:</strong> http://cdv.lt/api/languages</p>
+<p><strong>Response:</strong> <a href="http://cdv.lt/api/languages">json</a></p>
+</pre>
+
+<pre>
+<h3>Create a snippet:</h3>
+<p><strong>POST:</strong> http://cdv.lt/api/snippet</p>
+<p><strong>Parameters:</strong></p>
+<table class="table table-bordered">
+  <tr><td>(required)</td><td><strong>snippetData</strong></td><td>snippet content</td></tr>
+  <tr><td>(optional)</td><td><strong>snippetLanguage</strong></td><td>snippet language (from the language list, otherwise "no-highlight")</td></tr>
+</table>
+<p><strong>Example:</strong> <a href="http://cdv.lt/QR">PHP curl example</a></p>
+<p><strong>Response:</strong> json example: 
+  {
+    "createdSnippet": {
+        "snippetId": "1h",
+        "snippetData": "zzxxccc",
+        "snippetLanguage": "no-highlight",
+        "snippetCreationTime": "February 08, 2013 13:24:26"
+    }
+  }</p>
+<p><strong>Error:</strong> json example: {"error": "failedToCreateSnippet"}</p>
+</pre>
+
+
+{% endblock %}
+
+{% block jscript %}
+<script src="/static/js/main.js"></script>
+{% endblock %}
