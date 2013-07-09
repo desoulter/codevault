@@ -35,7 +35,19 @@ Page #{{ currentPage }}
 {% for coderecord in coderecords %}
     <p>
         <a href="/{{ coderecord.id|url_base62 }}">{{ coderecord.code_time|date:"j F Y" }}</a><strong> | {{ coderecord.code_language|escape }}</strong>
-        <pre><code>{{ coderecord.code_text|escape }}</code></pre>
+    </p>
+    <p>
+      {% if forloop.counter0|divisibleby:10 %}
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:728px;height:90px"
+           data-ad-client="ca-pub-6377547385802801"
+           data-ad-slot="4885487736"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      {% endif %}
+    </p>
+    <p><pre><code>{{ coderecord.code_text|escape }}</code></pre>
     </p>
     <p>&nbsp;</p>
 {% endfor %}
